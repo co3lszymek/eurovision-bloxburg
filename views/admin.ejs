@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head><title>Admin Panel</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel - Eurovision Voting</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
 <body>
-  <h1>Votes</h1>
-  <ul>
-    <% for (let country in votes) { %>
-      <li><%= country %>: <%= votes[country] %> votes</li>
-    <% } %>
-  </ul>
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <table>
+      <thead>
+        <tr><th>Country</th><th>Votes</th></tr>
+      </thead>
+      <tbody>
+        <% countries.forEach(c => { %>
+          <tr>
+            <td><%= c.emoji %> <%= c.name %></td>
+            <td><%= votes[c.code] || 0 %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <a href="/">Back to Voting</a>
+  </div>
 </body>
 </html>
