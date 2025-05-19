@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin Panel</title></head>
+<body>
+  <h1>Votes</h1>
+  <ul>
+    <% for (let country in votes) { %>
+      <li><%= country %>: <%= votes[country] %> votes</li>
+    <% } %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eurovision Voting - Bloxburg</title>
+</head>
+<body>
+  <h1>Vote for Your Favorite Country!</h1>
+  <% if (voted) { %>
+    <p>You have used all 5 votes.</p>
+  <% } else { %>
+    <form method="POST" action="/vote">
+      <select name="country">
+        <% countries.forEach(function(country) { %>
+          <option value="<%= country %>"><%= country %></option>
+        <% }); %>
+      </select>
+      <button type="submit">Vote</button>
+    </form>
+  <% } %>
+  <a href="/admin">Admin Panel</a>
+</body>
+</html>
