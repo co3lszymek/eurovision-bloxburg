@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Eurovision Voting - Bloxburg</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>Vote for Your Favorite Country!</h1>
-  <% if (voted) { %>
-    <p>You have used all 5 votes.</p>
-  <% } else { %>
-    <form method="POST" action="/vote">
-      <select name="country">
-        <% countries.forEach(function(country) { %>
-          <option value="<%= country %>"><%= country %></option>
-        <% }); %>
-      </select>
-      <button type="submit">Vote</button>
-    </form>
-  <% } %>
-  <a href="/admin">Admin Panel</a>
+  <div class="container">
+    <h1>Vote for Your Favorite Country!</h1>
+
+    <% if (voted) { %>
+      <p>You used all 5 votes. Thanks!</p>
+    <% } else { %>
+      <form method="POST" action="/vote">
+        <select name="country" required>
+          <% countries.forEach(c => { %>
+            <option value="<%= c.code %>"><%= c.emoji %> <%= c.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit">Vote</button>
+      </form>
+      <p>You have <%= 5 - (userVotes ? userVotes[req.session.userId] : 0) %> votes left.</p>
+    <% } %>
+
+    <a href="/admin">Admin Panel</a>
+  </div>
 </body>
 </html>
